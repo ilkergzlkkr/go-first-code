@@ -1,0 +1,155 @@
+definitions:
+  models.Todo:
+    properties:
+      createdAt:
+        type: string
+      done:
+        type: boolean
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Simplest API written in go
+  title: Simple Go Fiber App
+  version: 1.0.0
+paths:
+  /:
+    get:
+      description: get the welcome message
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      tags:
+      - Base
+  /todo:
+    get:
+      description: get all todos
+      parameters:
+      - description: Filter Undone Todos optionally with `true`
+        in: query
+        name: undone
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Todo'
+      tags:
+      - Todo
+    post:
+      consumes:
+      - application/json
+      description: create a new todo
+      parameters:
+      - description: Todo Title
+        in: query
+        minLength: 3
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      tags:
+      - Todo
+  /todo/:id:
+    delete:
+      description: delete todo with id
+      parameters:
+      - description: Todo Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      tags:
+      - Todo
+    get:
+      description: get todo with id
+      parameters:
+      - description: Todo Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Todo'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      tags:
+      - Todo
+  /todo/:id/done:
+    patch:
+      description: mark todo done
+      parameters:
+      - description: Todo Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Todo'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      tags:
+      - Todo
+  /version:
+    get:
+      description: get the version
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      tags:
+      - Base
+swagger: "2.0"

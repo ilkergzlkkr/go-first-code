@@ -1,0 +1,4 @@
+# ignore swag (swaggo) executable
+swag**
+# exclude generated swagger docs
+!swagger**
