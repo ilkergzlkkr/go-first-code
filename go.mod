@@ -3,6 +3,8 @@ module github.com/illkergzlkkr/go-first-code
 go 1.23.4
 
 require (
+	github.com/aws/aws-lambda-go v1.47.0
+	github.com/awslabs/aws-lambda-go-api-proxy v0.16.2
 	github.com/gofiber/fiber/v2 v2.52.6
 	github.com/swaggo/swag/v2 v2.0.0-rc4
 )

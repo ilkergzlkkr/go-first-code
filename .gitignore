@@ -2,3 +2,8 @@
 swag**
 # exclude generated swagger docs
 !swagger**
+
+# sst
+.sst
+
+.env
