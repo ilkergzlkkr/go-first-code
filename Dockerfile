@@ -1,4 +1,4 @@
-FROM go:alpine as builder
+FROM cimg/go:1.23.4 as builder
 
 WORKDIR /app
 
